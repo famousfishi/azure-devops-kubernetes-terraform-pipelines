@@ -16,43 +16,48 @@ stages:
     steps:
     - bash: echo Build First Job
     - bash: echo $(AzurePipelineVariable)
+    - bash: echo $(Build.BuildNumber)
+    - bash: echo $(Build.BuildId)
+    - bash: echo $(Build.SourceBranchName)
+
+
   - job: SecondJob
     steps:
     - bash: echo Build Second Job
-- stage: DevDeploy
-  variables:
-    environment: Dev
-  dependsOn : Build
-  jobs:
-  - job: DevDeployJob
-    steps:
-    - bash: echo $(environment) DevDeployJob
+# - stage: DevDeploy
+#   variables:
+#     environment: Dev
+#   dependsOn : Build
+#   jobs:
+#   - job: DevDeployJob
+#     steps:
+#     - bash: echo $(environment) DevDeployJob
 
-- stage: QADeploy
-  dependsOn : Build
-  jobs:
-  - job: QAJob
-    steps:
-    - bash : echo Build QAJOb
+# - stage: QADeploy
+#   dependsOn : Build
+#   jobs:
+#   - job: QAJob
+#     steps:
+#     - bash : echo Build QAJOb
 
-- stage: ProdDeploy
-  dependsOn :
-   - DevDeploy
-   - QADeploy
-  jobs:
-  - job: ProdDeployJob
-    steps:
-    - bash : echo Build ProdDeployJOb
+# - stage: ProdDeploy
+#   dependsOn :
+#    - DevDeploy
+#    - QADeploy
+#   jobs:
+#   - job: ProdDeployJob
+#     steps:
+#     - bash : echo Build ProdDeployJOb
 
-- stage: MultiJob
-  dependsOn: ProdDeploy
-  jobs:
-  - job: MultiJob
-    steps:
-    - script: echo Hello, world!
-      displayName: 'Run a one-line script'
+# - stage: MultiJob
+#   dependsOn: ProdDeploy
+#   jobs:
+#   - job: MultiJob
+#     steps:
+#     - script: echo Hello, world!
+#       displayName: 'Run a one-line script'
 
-    - script: |
-        echo Add other tasks to build, test, and deploy your project.
-        echo See https://aka.ms/yaml
-      displayName: 'Run a multi-line script'
+#     - script: |
+#         echo Add other tasks to build, test, and deploy your project.
+#         echo See https://aka.ms/yaml
+#       displayName: 'Run a multi-line script'
