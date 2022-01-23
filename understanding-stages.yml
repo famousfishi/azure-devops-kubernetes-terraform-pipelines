@@ -19,7 +19,7 @@ stages:
     - bash: echo $(Build.BuildNumber)
     - bash: echo $(Build.BuildId)
     - bash: echo $(Build.SourceBranchName)
-    - bash: echo ls -R $(System.DefaultWorkinDirectory)
+    - bash: echo ls -R $(System.DefaultWorkingDirectory)
 
 
   - job: SecondJob
