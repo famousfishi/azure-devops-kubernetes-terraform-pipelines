@@ -34,7 +34,7 @@ stages:
       runOnce:
         deploy:
           steps:
-            - script: echo deploy to $(environment)
+            - script: echo deploy to Dev
 - stage: QADeploy
   jobs:
   - job: BuildJob
@@ -46,7 +46,7 @@ stages:
       runOnce:
         deploy:
           steps:
-            - script: echo deploy to $(environment)
+            - script: echo deploy to QA
 
     # steps:
     # - script: echo running on $(operatingSystem).
